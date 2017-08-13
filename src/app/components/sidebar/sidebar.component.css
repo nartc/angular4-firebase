@@ -1,0 +1,9 @@
+#addNewClient {
+    background-color: #e3f2fd;
+    color: lightslategrey;
+} 
+
+#addNewClient:hover{
+    color: #3faee8;
+    border: 1px solid #3faee8;
+}
