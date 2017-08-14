@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-6">
+    <h2><i class="fa fa-database"></i> Courses</h2>
+  </div>
+</div>
+
+<table *ngIf="courses?.length > 0;else noCourses" class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th> ID</th>
+      <th> Name</th>
+      <th> Identifier</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of courses">
+      <td>{{course.$key}}</td>
+      <td>{{course.name}}</td>
+      <td>{{course.identifier.full}}</td>
+      <td>
+        <a href="#" [routerLink]="['/edit-course/'+course.$key]" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-circle-o-right"></i> Edit Course</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -23,6 +23,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { CoursesComponent } from './components/courses/courses.component';
+import { EditCourseComponent } from './components/edit-course/edit-course.component';
 
 //Service Imports
 import { ClientService } from './services/client.service';
@@ -30,6 +32,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { SettingsService } from './services/settings.service';
 import { RegisterGuard } from './guards/register.guard';
+import { CourseService } from './services/course.service';
 
 const appRoutes: Routes = [
   {path: '', component: DashboardComponent, canActivate:[AuthGuard]},
@@ -39,6 +42,8 @@ const appRoutes: Routes = [
   {path: 'client/:id', component: ClientDetailsComponent, canActivate:[AuthGuard]},
   {path: 'edit-client/:id', component: EditClientComponent, canActivate:[AuthGuard]},
   {path: 'settings', component: SettingsComponent, canActivate:[AuthGuard]},
+  {path: 'edit-course/:id', component: EditCourseComponent},
+  {path: 'courses', component: CoursesComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -66,7 +71,9 @@ export const firebaseConfig = {
     LoginComponent,
     RegisterComponent,
     SettingsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CoursesComponent,
+    EditCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +90,8 @@ export const firebaseConfig = {
     AuthService,
     AuthGuard,
     SettingsService,
-    RegisterGuard
+    RegisterGuard,
+    CourseService
   ],
   bootstrap: [AppComponent]
 })

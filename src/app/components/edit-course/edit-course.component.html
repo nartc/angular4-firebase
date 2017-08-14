@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/courses" href="#" class="btn btn-link"><i class="fa fa-arrow-circle-o-left"></i> Back to Courses</a>   
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Edit Course
+  </div>
+  <div class="card-block">
+    <form
+      #f = "ngForm"
+      (ngSubmit)="onSubmit(f)"
+    >
+      <div class="form-group">
+        <label for="name">Course Name</label>
+        <input 
+          type="text" 
+          name="name" 
+          [(ngModel)]="course.name"
+          class="form-control"
+        >
+      </div>
+      <div class="form-group">
+        <label for="identifier.full">Course Identifier</label>
+        <input 
+          type="text" 
+          name="identifier[full]" 
+          [(ngModel)]="course.identifier.full"
+          class="form-control"
+        >
+      </div>
+      <div class="form-group">
+        <label for="identifier">Prerequisites</label>
+        <ng-template ngFor let-item [ngForOf]="course.prerequisites" let-index="index">
+          <input 
+            *ngIf="course.prerequisites.length > 0"
+            type="text" 
+            class="form-control"
+            name="course[prerequisites][{{index}}][identifier]"
+            [(ngModel)]="course.prerequisites[index].identifier"
+          > {{index + 1}}. {{course.prerequisites[index].identifier}}
+          <hr>
+        </ng-template>
+          <input 
+            *ngIf="course.prerequisites.length == 0"
+            type="text" 
+            class="form-control"
+            [(ngModel)]="course.prerequisites.identifier"
+            name="course[prerequisites][identifier]"
+          >  
+      </div>
+      <div class="form-group">
+        <button type="button" style="cursor: pointer" class="btn btn-secondary btn-sm" (click)="onAddClick()"><i class="fa fa-plus"></i></button>  
+      </div> 
+      <input type="submit" value="Submit" class="btn btn-primary btn-block">
+    </form>
+  </div>
+</div>
